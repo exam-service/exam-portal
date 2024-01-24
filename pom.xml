@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>exam-portal</artifactId>
+	<artifactId>exam-portal-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>exam-portal</name>
+	<name>exam-portal-server</name>
 	<description>Exam portal project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
