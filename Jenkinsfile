@@ -4,19 +4,36 @@ pipeline {
         maven 'maven3'
         jdk 'jdk11'
     }
+
+    environment{
+        SCANNER_HOME= tool 'sonar-scanner'
+    }
+
     stages {
-        stage ('Initialize') {
+        stage ('Git Checkout') {
             steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+                git branch: 'main', url: 'https://github.com/exam-service/exam-portal-server.git'
             }
         }
 
-        stage ('Build') {
+        stage ('Compile') {
             steps {
                 sh 'mvn compile'
+            }
+        }
+
+        stage ('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage ('Sonar Scan') {
+            withSonarQubeEnv('sonar') {
+                sh '''
+                   $SCANNER_HOME/bin/home/sonar-scanner -Dsonar.projectKey=exam-portal-server -Dsonar.projectName=exam-portal-server \
+                   -Dsonar.java.binaries=.
+                   '''
             }
         }
     }
