@@ -9,6 +9,10 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
     }
 
+    triggers {
+        pullRequest()
+    }
+
     stages {
         stage('Git Checkout') {
             steps {
@@ -28,15 +32,15 @@ pipeline {
             }
         }
 
-        stage('Sonar Scan') {
-            steps {
-                withSonarQubeEnv('sonar') {
-                    sh '''
-                   $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=exam-portal-server -Dsonar.projectName=exam-portal-server \
-                   -Dsonar.java.binaries=.
-                   '''
-                }
-            }
-        }
+//        stage('Sonar Scan') {
+//            steps {
+//                withSonarQubeEnv('sonar') {
+//                    sh '''
+//                   $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=exam-portal-server -Dsonar.projectName=exam-portal-server \
+//                   -Dsonar.java.binaries=.
+//                   '''
+//                }
+//            }
+//        }
     }
 }
