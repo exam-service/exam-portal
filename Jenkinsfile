@@ -32,7 +32,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar') {
                     sh '''
-                   $SCANNER_HOME/bin/home/sonar-scanner -Dsonar.projectKey=exam-portal-server -Dsonar.projectName=exam-portal-server \
+                   $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectKey=exam-portal-server -Dsonar.projectName=exam-portal-server \
                    -Dsonar.java.binaries=.
                    '''
                 }
