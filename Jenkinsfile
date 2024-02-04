@@ -9,10 +9,6 @@ pipeline {
         SCANNER_HOME = tool 'sonar-scanner'
     }
 
-    triggers {
-        pullRequest()
-    }
-
     stages {
         stage('Git Checkout') {
             steps {
